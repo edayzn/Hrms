@@ -48,8 +48,8 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 	}
 
 	@Override
-	public DataResult<List<JobAdvertisement>> findAllActiveJob_Advertisements() {
-		return new SuccessDataResult<List<JobAdvertisement>>(this.advertisementDao.findAllActiveJob_Advertisements(), "Aktif İş ilanı listelendi");
+	public DataResult<List<JobAdvertisement>> findByWorkingConditionTrue() {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.advertisementDao.findByWorkingConditionTrue(), "Aktif iş ilanları listelendi" ) ;
 	}
 
 	@Override
@@ -58,8 +58,15 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 	}
 
 	@Override
-	public DataResult<Integer> updateJobAdvertisementSetWorkingConditionForEmployer(int jobId, int employer_id) {
-		return new SuccessDataResult<Integer>(this.advertisementDao.updateJobAdvertisementSetWorkingConditionForEmployer(jobId,employer_id), "İş ilanı listelendi");
+	public Result updateJobAdvertisementSetWorkingConditionForEmployer(int jobId, int employer_id) {
+		this.advertisementDao.updateJobAdvertisementSetWorkingConditionForEmployer(jobId,employer_id);
+		return new SuccessResuslt("İş ilanı pasif");
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> findByOrderByReleaseDateDesc() {
+		
+		return new SuccessDataResult<List<JobAdvertisement>>(this.advertisementDao.findByOrderByReleaseDateDesc(), "İş ilanı listelendi");
 	}
 
 }

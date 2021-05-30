@@ -15,12 +15,14 @@ import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 public interface JobAdvertisementService {
 	 DataResult<List<JobAdvertisement>> getAll();
 	 Result add(JobAdvertisement advertisement);
+	
 	 
-	 @Query("SELECT job FROM JobAdvertisement job WHERE job.workingCondition = 1")
-	 DataResult<List<JobAdvertisement>> findAllActiveJob_Advertisements();
-
+	 DataResult<List<JobAdvertisement>> findByWorkingConditionTrue();
+	 
+     DataResult<List<JobAdvertisement>>  findByOrderByReleaseDateDesc();
+     
 	 DataResult<JobAdvertisement> getByJobIdAndEmployer(int job_id, int employer_id);
 
 		
-	 DataResult<Integer> updateJobAdvertisementSetWorkingConditionForEmployer(@Param("jobId") int jobId, @Param("employer_id") int employer_id);
+	 Result updateJobAdvertisementSetWorkingConditionForEmployer(@Param("jobId") int jobId, @Param("employer_id") int employer_id);
 }

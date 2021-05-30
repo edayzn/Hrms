@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,6 +20,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name="employers")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","job_advertisement"})
 public class Employer extends User {
 	
 	@Column(name="company_name")

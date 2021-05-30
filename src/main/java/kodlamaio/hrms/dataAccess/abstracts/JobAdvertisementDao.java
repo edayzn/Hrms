@@ -11,12 +11,16 @@ import org.springframework.data.repository.query.Param;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 
 public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Integer> {
-	@Query("SELECT job FROM JobAdvertisement job WHERE job.workingCondition = 1")
-	List<JobAdvertisement> findAllActiveJob_Advertisements();
+	@Query("SELECT job FROM JobAdvertisement job WHERE job.workingCondition =true")
+	List<JobAdvertisement> findByWorkingConditionTrue();
 
+	List<JobAdvertisement> findByOrderByReleaseDateDesc();
+	
 	JobAdvertisement getByJobIdAndEmployer(int job_id, int employer_id);
 
 	@Modifying
 	@Query("update JobAdvertisement set workingCondition=false where jobId=:jobId and employer.user_id= :employer_id")
 	int updateJobAdvertisementSetWorkingConditionForEmployer(@Param("jobId") int jobId, @Param("employer_id") int employer_id);
+	
+	
 }
