@@ -18,6 +18,7 @@ import kodlamaio.hrms.dataAccess.abstracts.JobAdvertisementDao;
 import kodlamaio.hrms.entities.concretes.Employer;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 import kodlamaio.hrms.entities.concretes.JobPositions;
+import kodlamaio.hrms.entities.dtos.JobAdvertisementWithEmployerAndJobPositionDto;
 @Service
 public class JobAdvertisementManager implements JobAdvertisementService {
 
@@ -53,8 +54,8 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 	}
 
 	@Override
-	public DataResult<JobAdvertisement> getByJobIdAndEmployer(int job_id, int employer_id) {
-		return new SuccessDataResult<JobAdvertisement>(this.advertisementDao.getByJobIdAndEmployer(job_id, employer_id), "İş ilanı listelendi");
+	public DataResult<JobAdvertisement> findByJobIdAndEmployer(int job_id, int employer_id) {
+		return new SuccessDataResult<JobAdvertisement>(this.advertisementDao.findByJobIdAndEmployer(job_id, employer_id), "İş ilanı listelendi");
 	}
 
 	@Override
@@ -65,8 +66,12 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 
 	@Override
 	public DataResult<List<JobAdvertisement>> findByOrderByReleaseDateDesc() {
-		
 		return new SuccessDataResult<List<JobAdvertisement>>(this.advertisementDao.findByOrderByReleaseDateDesc(), "İş ilanı listelendi");
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisementWithEmployerAndJobPositionDto>> findJobAdvertisementWithEmployerAndJobPositionDetails() {
+		return new SuccessDataResult<List<JobAdvertisementWithEmployerAndJobPositionDto>>(this.advertisementDao.findJobAdvertisementWithEmployerAndJobPositionDetails(), "İş ilanı listelendi");
 	}
 
 }

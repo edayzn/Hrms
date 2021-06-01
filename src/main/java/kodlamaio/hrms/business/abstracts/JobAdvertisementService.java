@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
+import kodlamaio.hrms.entities.dtos.JobAdvertisementWithEmployerAndJobPositionDto;
 
 
 public interface JobAdvertisementService {
@@ -21,8 +22,10 @@ public interface JobAdvertisementService {
 	 
      DataResult<List<JobAdvertisement>>  findByOrderByReleaseDateDesc();
      
-	 DataResult<JobAdvertisement> getByJobIdAndEmployer(int job_id, int employer_id);
+	 DataResult<JobAdvertisement> findByJobIdAndEmployer(int job_id, int employer_id);
 
 		
 	 Result updateJobAdvertisementSetWorkingConditionForEmployer(@Param("jobId") int jobId, @Param("employer_id") int employer_id);
+	 
+	 DataResult<List<JobAdvertisementWithEmployerAndJobPositionDto>> findJobAdvertisementWithEmployerAndJobPositionDetails();
 }

@@ -13,6 +13,7 @@ import kodlamaio.hrms.business.abstracts.JobAdvertisementService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
+import kodlamaio.hrms.entities.dtos.JobAdvertisementWithEmployerAndJobPositionDto;
 
 @RestController
 @RequestMapping("/api/jobadvertisement")
@@ -40,12 +41,17 @@ public class JobAdvertisementController {
 	}
 	
 	@GetMapping("/getByJobIdAndEmployer")
-	public DataResult<JobAdvertisement> getByJobIdAndEmployer(@RequestParam int job_id, @RequestParam int employer_id){
-		return this.advertisementService.getByJobIdAndEmployer(job_id, employer_id);
+	public DataResult<JobAdvertisement> findByJobIdAndEmployer(@RequestParam int job_id, @RequestParam int employer_id){
+		return this.advertisementService.findByJobIdAndEmployer(job_id, employer_id);
 	}
 	@GetMapping("/updateJobActive")
 	@Transactional
 	public Result updateJobAdvertisementSetWorkingConditionForEmployer(@RequestParam int jobId, @RequestParam int employer_id){
 		return this.advertisementService.updateJobAdvertisementSetWorkingConditionForEmployer(jobId, employer_id);
+	}
+	@GetMapping("/getJobAdvertisementWithEmployerAndJobPositionDetails")
+	public DataResult<List<JobAdvertisementWithEmployerAndJobPositionDto>> getJobAdvertisementWithEmployerAndJobPositionDetails(){
+		return this.advertisementService.findJobAdvertisementWithEmployerAndJobPositionDetails();
+	
 	}
 }
