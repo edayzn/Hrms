@@ -15,25 +15,22 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
-@Entity 
-@Table(name="job_positions")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","advertisements"})
-public class JobPositions {
+@Entity
+@Table(name="education_levels")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","educationInfromations"})
+public class EducationLevel {
 	@Id
-	 @GeneratedValue(strategy = GenerationType.IDENTITY)
-	 @Column(name="id")
-	 private int id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="education_id")
+	  private int educationId;
 	
-	@Column(name="position_name")
-	 private String position_name;
-
-	@OneToMany(mappedBy ="jobPosition")
-	private List<JobAdvertisement> advertisements;
+	@Column(name="education_name")
+	  private String educationName;
 	
-	@OneToMany(mappedBy = "position")
-	private List<WorkExperience> experiences;
+	@OneToMany(mappedBy = "educationLevel")
+	private List<EducationInformation> educationInfromations;
 	
 }

@@ -4,6 +4,9 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -11,34 +14,23 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@EqualsAndHashCode(callSuper=false)
-@AllArgsConstructor
 @NoArgsConstructor
-
+@AllArgsConstructor
 @Data
 @Entity
-@Table(name="job_seekers")
+@Table(name="universities")
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","educationInformations"})
-public class JobSeeker extends User {
-
-	@Column(name="first_name")
-	 private String firstname;
+public class University {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="university_id")
+    private int universtyId;
 	
-	@Column(name="last_name")
-	 private String lastname;
+	@Column(name="university_name")
+	private String universtyName;
 	
-	@Column(name="identification_number")
-	 private String identification_number;
-	
-	@Column(name="year_of_birth")
-	 private int yearOfBirth;
-	
-	@OneToMany(mappedBy = "jobSeeker")
+	@OneToMany(mappedBy = "university")
 	private List<EducationInformation> educationInformations;
-	
-	@OneToMany(mappedBy = "jobSeeker")	
-	private List<WorkExperience> experiences;
 }
