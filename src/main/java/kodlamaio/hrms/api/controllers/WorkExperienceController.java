@@ -29,7 +29,7 @@ public class WorkExperienceController {
 	public DataResult<List<WorkExperience>> getAll(){
 		return this.experienceService.getAll();
 	}
-	@PostMapping("/addWorkExperience")
+	@PostMapping("/add")
 	public Result add(@RequestBody WorkExperience workExperience) {
 		return this.experienceService.add(workExperience);
 	}
