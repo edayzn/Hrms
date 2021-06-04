@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import kodlamaio.hrms.business.abstracts.CoverLetterService;
 import kodlamaio.hrms.business.abstracts.EducationInformationService;
 import kodlamaio.hrms.business.abstracts.ForeignLanguageInformationService;
 import kodlamaio.hrms.business.abstracts.JobSeekerService;
@@ -16,6 +17,7 @@ import kodlamaio.hrms.business.abstracts.SocialAccountService;
 import kodlamaio.hrms.business.abstracts.WorkExperienceService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
+import kodlamaio.hrms.entities.concretes.CoverLetter;
 import kodlamaio.hrms.entities.concretes.EducationInformation;
 import kodlamaio.hrms.entities.concretes.ForeignLanguageInformation;
 import kodlamaio.hrms.entities.concretes.JobSeeker;
@@ -31,17 +33,20 @@ public class JobSeekerController {
 	private WorkExperienceService experienceService;
 	private ForeignLanguageInformationService languageInformationService;
 	private SocialAccountService accountService;
+	private CoverLetterService coverLetterService;
 	
 	@Autowired
 	public JobSeekerController(JobSeekerService jobSeekerService,
 			EducationInformationService educationInformationService, WorkExperienceService experienceService,
-			ForeignLanguageInformationService languageInformationService, SocialAccountService accountService) {
+			ForeignLanguageInformationService languageInformationService, SocialAccountService accountService,
+			CoverLetterService coverLetterService) {
 		super();
 		this.jobSeekerService = jobSeekerService;
 		this.educationInformationService = educationInformationService;
 		this.experienceService = experienceService;
 		this.languageInformationService = languageInformationService;
 		this.accountService = accountService;
+		this.coverLetterService=coverLetterService;
 	}
 	
 
@@ -85,8 +90,17 @@ public class JobSeekerController {
 		return this.accountService.getAll();
 	}
 	@PostMapping("/addSocialAccount")
-	public Result addSocialAccount(SocialAccount account) {
+	public Result addSocialAccount(@RequestBody SocialAccount account) {
 		return this.accountService.add(account);
 	}
-		
+	
+	@GetMapping("/getAllCoverLetter")
+	public DataResult<List<CoverLetter>> getALLCoverLetter() {
+		return this.coverLetterService.getALL();
+	}
+	@PostMapping("/addCoverLetter")
+	public Result addCoverLetter(@RequestBody CoverLetter coverLetter) {
+		return this.coverLetterService.add(coverLetter);
+	}
+	
 }
