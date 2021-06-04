@@ -9,25 +9,41 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import kodlamaio.hrms.business.abstracts.EducationInformationService;
+import kodlamaio.hrms.business.abstracts.ForeignLanguageInformationService;
 import kodlamaio.hrms.business.abstracts.JobSeekerService;
-
+import kodlamaio.hrms.business.abstracts.SocialAccountService;
+import kodlamaio.hrms.business.abstracts.WorkExperienceService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
+import kodlamaio.hrms.entities.concretes.EducationInformation;
+import kodlamaio.hrms.entities.concretes.ForeignLanguageInformation;
 import kodlamaio.hrms.entities.concretes.JobSeeker;
+import kodlamaio.hrms.entities.concretes.SocialAccount;
+import kodlamaio.hrms.entities.concretes.WorkExperience;
 
 @RestController
 @RequestMapping("/api/jobseekers")
 public class JobSeekerController {
 
 	private JobSeekerService jobSeekerService;
+	private EducationInformationService educationInformationService;
+	private WorkExperienceService experienceService;
+	private ForeignLanguageInformationService languageInformationService;
+	private SocialAccountService accountService;
 	
-
 	@Autowired
-	public JobSeekerController(JobSeekerService jobSeekerService) {
+	public JobSeekerController(JobSeekerService jobSeekerService,
+			EducationInformationService educationInformationService, WorkExperienceService experienceService,
+			ForeignLanguageInformationService languageInformationService, SocialAccountService accountService) {
 		super();
 		this.jobSeekerService = jobSeekerService;
-		
+		this.educationInformationService = educationInformationService;
+		this.experienceService = experienceService;
+		this.languageInformationService = languageInformationService;
+		this.accountService = accountService;
 	}
+	
 
 	@GetMapping("/getall")
 	public DataResult<List<JobSeeker>>  getAll() {
@@ -36,5 +52,41 @@ public class JobSeekerController {
 	@PostMapping("/add")
 	public Result add(@RequestBody JobSeeker jobSeeker, String passwordAgain) {
 		return this.jobSeekerService.add(jobSeeker,passwordAgain);
-		}
+	}
+	
+	@GetMapping("/getAllEducationInformation")
+	public DataResult<List<EducationInformation>> getAllEducationInformation(){
+		return this.educationInformationService.getAll();
+	}
+	@PostMapping("/addEducationInformation")
+	public Result addEducationInformation(@RequestBody EducationInformation educationInformation) {
+		return this.educationInformationService.add(educationInformation);
+	}
+	@GetMapping("/getAllWorkExperience")
+	public DataResult<List<WorkExperience>> getAllWorkExperience(){
+		return this.experienceService.getAll();
+	}
+	@PostMapping("/addWorkExperience")
+	public Result addWorkExperience(@RequestBody WorkExperience workExperience) {
+		return this.experienceService.add(workExperience);
+	}
+
+	@GetMapping("/getAllForeignLanguageInformation")
+	public DataResult<List<ForeignLanguageInformation>> getAllForeignLanguageInformation() {
+		return this.languageInformationService.getAll();
+	}
+	
+	@PostMapping("/addForeignLanguageInformation")
+	public Result addForeignLanguageInformation(@RequestBody ForeignLanguageInformation languageInformation) {
+		return this.languageInformationService.add(languageInformation);
+	}
+	@GetMapping("/getAllSocialAccount")
+	public DataResult<List<SocialAccount>> getAllSocialAccount() {
+		return this.accountService.getAll();
+	}
+	@PostMapping("/addSocialAccount")
+	public Result addSocialAccount(SocialAccount account) {
+		return this.accountService.add(account);
+	}
+		
 }
