@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import kodlamaio.hrms.business.abstracts.ComputerSkillService;
 import kodlamaio.hrms.business.abstracts.CoverLetterService;
 import kodlamaio.hrms.business.abstracts.EducationInformationService;
 import kodlamaio.hrms.business.abstracts.ForeignLanguageInformationService;
@@ -17,6 +18,7 @@ import kodlamaio.hrms.business.abstracts.SocialAccountService;
 import kodlamaio.hrms.business.abstracts.WorkExperienceService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
+import kodlamaio.hrms.entities.concretes.ComputerSkill;
 import kodlamaio.hrms.entities.concretes.CoverLetter;
 import kodlamaio.hrms.entities.concretes.EducationInformation;
 import kodlamaio.hrms.entities.concretes.ForeignLanguageInformation;
@@ -34,12 +36,13 @@ public class JobSeekerController {
 	private ForeignLanguageInformationService languageInformationService;
 	private SocialAccountService accountService;
 	private CoverLetterService coverLetterService;
+	private ComputerSkillService computerSkillService;
 	
 	@Autowired
 	public JobSeekerController(JobSeekerService jobSeekerService,
 			EducationInformationService educationInformationService, WorkExperienceService experienceService,
 			ForeignLanguageInformationService languageInformationService, SocialAccountService accountService,
-			CoverLetterService coverLetterService) {
+			CoverLetterService coverLetterService, ComputerSkillService computerSkillService) {
 		super();
 		this.jobSeekerService = jobSeekerService;
 		this.educationInformationService = educationInformationService;
@@ -47,6 +50,7 @@ public class JobSeekerController {
 		this.languageInformationService = languageInformationService;
 		this.accountService = accountService;
 		this.coverLetterService=coverLetterService;
+		this.computerSkillService=computerSkillService;
 	}
 	
 
@@ -102,5 +106,12 @@ public class JobSeekerController {
 	public Result addCoverLetter(@RequestBody CoverLetter coverLetter) {
 		return this.coverLetterService.add(coverLetter);
 	}
-	
+	@GetMapping("/getAllComputerSkill")
+	public DataResult<List<ComputerSkill>> getAllComputerSkill() {
+		return this.computerSkillService.getAll();
+	}
+	@PostMapping("/addComputerSkill")
+	public Result addComputerSkill(@RequestBody ComputerSkill computerSkill) {
+		return this.computerSkillService.add(computerSkill);
+	}
 }
