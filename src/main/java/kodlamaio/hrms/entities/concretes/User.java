@@ -45,4 +45,7 @@ public class User {
 	
 	@OneToOne(mappedBy = "user")
 	private Photo photo;
+	
+	@OneToOne(mappedBy = "user")
+	private Cv cv;
 }

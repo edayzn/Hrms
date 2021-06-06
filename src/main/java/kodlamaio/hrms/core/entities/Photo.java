@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import kodlamaio.hrms.entities.concretes.Cv;
 import kodlamaio.hrms.entities.concretes.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,4 +32,7 @@ public class Photo {
 	@OneToOne()
 	@JoinColumn(name="user_id")
 	private User user;
+	
+	@OneToOne(mappedBy = "photo")
+	private Cv cv;
 }
