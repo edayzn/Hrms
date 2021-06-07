@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import kodlamaio.hrms.entities.concretes.Cv;
 import kodlamaio.hrms.entities.concretes.User;
 import lombok.AllArgsConstructor;
@@ -32,7 +34,7 @@ public class Photo {
 	@OneToOne()
 	@JoinColumn(name="user_id")
 	private User user;
-	
+	@JsonIgnore
 	@OneToOne(mappedBy = "photo")
 	private Cv cv;
 }

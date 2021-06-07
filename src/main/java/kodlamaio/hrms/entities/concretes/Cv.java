@@ -28,7 +28,7 @@ public class Cv {
 	
 	@OneToOne()
 	@JoinColumn(name="user_id")
-	private User user;
+	private JobSeeker jobSeeker;
 	
 	@OneToOne()
 	@JoinColumn(name="photo_id")

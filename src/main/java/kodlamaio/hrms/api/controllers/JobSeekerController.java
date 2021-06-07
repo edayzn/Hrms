@@ -121,4 +121,12 @@ public class JobSeekerController {
 	public Result addCv(@RequestBody Cv cv) {
 		return this.cvService.add(cv);
 	}
+	@GetMapping("/getAllCv")
+	public DataResult<List<Cv>> getAllCv(){
+		return this.cvService.getAll();
+	}
+	@GetMapping("/findByFirstname")
+	public DataResult<List<Cv>> findByFirstname(String identification_number) {
+		return this.cvService.findByJobSeeker(identification_number);
+	}
 }

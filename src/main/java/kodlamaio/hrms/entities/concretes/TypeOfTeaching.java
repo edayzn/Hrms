@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -29,7 +30,7 @@ public class TypeOfTeaching {
 	
 	@Column(name="teaching_name")
 	private String teachingName;
-	
+	@JsonIgnore
 	@OneToMany(mappedBy = "ofTeaching")
 	private List<EducationInformation> educationInformations;
 	

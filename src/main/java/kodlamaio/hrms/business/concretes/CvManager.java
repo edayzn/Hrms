@@ -34,5 +34,12 @@ public class CvManager implements CvService {
 		this.cvDao.save(cv);
 		return new SuccessResuslt("Cv başarılı bir şekilde oluşturuldu");
 	}
+
+	@Override
+	public DataResult<List<Cv>> findByJobSeeker(String identification_number) {
+		
+		return new SuccessDataResult<List<Cv>>(this.cvDao.findByJobSeeker(identification_number));
+	}
+	
 	
 }

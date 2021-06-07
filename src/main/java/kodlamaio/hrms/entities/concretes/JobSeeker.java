@@ -5,8 +5,10 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -35,22 +37,25 @@ public class JobSeeker extends User {
 	
 	@Column(name="year_of_birth")
 	 private int yearOfBirth;
-	
+	@JsonIgnore
 	@OneToMany(mappedBy = "jobSeeker")
 	private List<EducationInformation> educationInformations;
-	
+	@JsonIgnore
 	@OneToMany(mappedBy = "jobSeeker")	
 	private List<WorkExperience> experiences;
-	
+	@JsonIgnore
 	@OneToMany(mappedBy = "jobSeeker")
 	private List<ForeignLanguageInformation> languageInformations;
-	
+	@JsonIgnore
 	@OneToMany(mappedBy = "jobSeeker")
 	private List<SocialAccount> accounts;
-	
+	@JsonIgnore
 	@OneToMany(mappedBy = "jobSeeker")
 	private List<CoverLetter> coverLetter;
-	
+	@JsonIgnore
 	@OneToMany(mappedBy = "jobSeeker")
 	private List<ComputerSkill> computerSkills;
+	@JsonIgnore
+	@OneToOne(mappedBy = "jobSeeker")
+	private Cv cv;
 }

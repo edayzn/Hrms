@@ -10,4 +10,6 @@ public interface CvService {
 
 	DataResult<List<Cv>> getAll();
 	Result add(Cv cv);
+	
+	 DataResult<List<Cv>> findByJobSeeker(String identification_number);
 }

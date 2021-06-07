@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -69,7 +70,7 @@ public class EducationInformation {
 	@JoinColumn(name="type_of_teaching_id")
 	private TypeOfTeaching ofTeaching;
 	
-	
+	@JsonIgnore
 	@OneToMany(mappedBy = "educationInformation")
 	private List<Cv> cvs;
 }
