@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -29,10 +30,10 @@ public class JobPositions {
 	
 	@Column(name="position_name")
 	 private String position_name;
-
+	@JsonIgnore
 	@OneToMany(mappedBy ="jobPosition")
 	private List<JobAdvertisement> advertisements;
-	
+	@JsonIgnore
 	@OneToMany(mappedBy = "position")
 	private List<WorkExperience> experiences;
 	

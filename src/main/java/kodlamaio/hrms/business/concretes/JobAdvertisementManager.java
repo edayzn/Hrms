@@ -39,11 +39,11 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 	@Override
 	public Result add(JobAdvertisement advertisement) {
 		
-		if( !advertisement.getJob_description().isEmpty() || !advertisement.getJobPosition().toString().isEmpty()|| !advertisement.getCity().isEmpty() ) {
+		//if( !advertisement.getJob_description().isEmpty() || !advertisement.getJobPosition().toString().isEmpty()|| !advertisement.getCity().toString().isEmpty() ) {
 		this.advertisementDao.save(advertisement);
 		return new SuccessResuslt("Kayıt başarılı");
-		}
-		return new ErrorResult("Tüm alanları doldurnuz");
+		//}
+		//return new ErrorResult("Tüm alanları doldurnuz");
 	
 
 	}

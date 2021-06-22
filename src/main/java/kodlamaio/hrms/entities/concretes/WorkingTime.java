@@ -11,27 +11,26 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
-@Table(name="languages")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","languageInformations"})
-public class Language {
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name="working_times")
+public class WorkingTime {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="language_id")
-	private int languageId;
+	@Column(name = "working_id")
+	private int workingId;
 	
-	@Column(name="language_name")
-	private String languageName;
-	@JsonIgnore
-	@OneToMany(mappedBy = "language")
-	private List<ForeignLanguageInformation> languageInformations;
+	@Column(name="working_name")
+	private String workingName;
+	@JsonIgnore()
+	@OneToMany(mappedBy = "workingTime")
+	private List<JobAdvertisement> advertisements; 
+	
 }

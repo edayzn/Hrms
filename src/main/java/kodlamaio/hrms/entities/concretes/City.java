@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -34,12 +35,15 @@ public class City {
 	private String ctyName;
 	
 	@ManyToOne()
-	@JoinColumn(name = "county_id")
+	@JoinColumn(name = "country_id")
 	private Country country;
-	
+	@JsonIgnore
 	@OneToMany(mappedBy ="city")
 	private List<EducationInformation> educationInformations;
-	
+	@JsonIgnore
 	@OneToMany(mappedBy = "city")
 	private List<WorkExperience> experiences;
+	@JsonIgnore
+	@OneToMany(mappedBy = "city")
+	private List<JobAdvertisement> advertisements;
 }

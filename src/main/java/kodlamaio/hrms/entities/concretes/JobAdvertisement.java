@@ -32,8 +32,6 @@ public class JobAdvertisement {
 	@Column(name="job_description")
 	private String job_description;
 	
-	@Column(name="city")
-	private String city;
 	
 	@Column(name="salary")
 	private int salary;
@@ -57,6 +55,15 @@ public class JobAdvertisement {
 	private Employer employer;
 	
 	@ManyToOne()
+	@JoinColumn(name="city_id")
+	private City city;
+	@ManyToOne()
 	@JoinColumn(name="position_id")
 	private JobPositions jobPosition;
+	@ManyToOne()
+	@JoinColumn(name = "working_id")
+	private WorkingTime workingTime;
+	@ManyToOne()
+	@JoinColumn(name="working_type_id")
+	private WorkingType workingType;
 }

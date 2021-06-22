@@ -30,6 +30,7 @@ public class Sector {
 	
 	@Column(name="sector_name")
 	private String sectorName;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "sector")
 	private List<WorkExperience> experiences;
