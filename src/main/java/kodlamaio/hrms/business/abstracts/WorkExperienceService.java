@@ -10,4 +10,5 @@ import kodlamaio.hrms.entities.concretes.WorkExperience;
 public interface WorkExperienceService {
 	DataResult<List<WorkExperience>> getAll();
 	Result add(WorkExperience workExperience);
+	Result update(WorkExperience workExperience);
 }

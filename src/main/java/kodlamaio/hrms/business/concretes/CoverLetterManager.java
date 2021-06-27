@@ -35,4 +35,10 @@ public class CoverLetterManager implements CoverLetterService {
 		return new SuccessResuslt("Ön yazı eklendi");
 	}
 
+	@Override
+	public Result update(int id, int userId, String coverLetter) {
+		this.coverLetterDao.update(id, userId, coverLetter);
+		return new SuccessResuslt("Ön yazı güncellendi");
+	}
+
 }

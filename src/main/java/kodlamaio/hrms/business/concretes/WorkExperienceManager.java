@@ -35,4 +35,10 @@ public class WorkExperienceManager implements WorkExperienceService{
 		return new SuccessResuslt("İş deneyimi eklendi.");
 	}
 
+	@Override
+	public Result update(WorkExperience workExperience) {
+		this.experienceDao.save(workExperience);
+		return new SuccessResuslt("İş deneyimi güncellendi");
+	}
+
 }

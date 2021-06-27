@@ -34,4 +34,10 @@ public class ForeignLanguageInformationManager implements ForeignLanguageInforma
 		return new SuccessResuslt(" Yabancı dil bilgisi eklendi.");
 	}
 
+	@Override
+	public Result update(int id, int userId,int levelId ,int languageId) {
+		this.languageInformationDao.update(id, userId,levelId, languageId);
+		return new SuccessResuslt("Yabancı dil bilgisi güncellendi");
+	}
+
 }

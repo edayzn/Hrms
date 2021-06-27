@@ -34,30 +34,14 @@ import kodlamaio.hrms.entities.concretes.WorkExperience;
 public class JobSeekerController {
 
 	private JobSeekerService jobSeekerService;
-	private EducationInformationService educationInformationService;
-	private WorkExperienceService experienceService;
-	private ForeignLanguageInformationService languageInformationService;
-	private SocialAccountService accountService;
-	private CoverLetterService coverLetterService;
-	private ComputerSkillService computerSkillService;
-	private CvService cvService;
+	
+	
 	@Autowired
-	public JobSeekerController(JobSeekerService jobSeekerService,
-			EducationInformationService educationInformationService, WorkExperienceService experienceService,
-			ForeignLanguageInformationService languageInformationService, SocialAccountService accountService,
-			CoverLetterService coverLetterService, ComputerSkillService computerSkillService, CvService cvService) {
+	public JobSeekerController(JobSeekerService jobSeekerService) {
 		super();
 		this.jobSeekerService = jobSeekerService;
-		this.educationInformationService = educationInformationService;
-		this.experienceService = experienceService;
-		this.languageInformationService = languageInformationService;
-		this.accountService = accountService;
-		this.coverLetterService=coverLetterService;
-		this.computerSkillService=computerSkillService;
-		this.cvService=cvService;
 	}
 	
-
 	@GetMapping("/getall")
 	public DataResult<List<JobSeeker>>  getAll() {
 		return this.jobSeekerService.getAll();
@@ -67,67 +51,4 @@ public class JobSeekerController {
 		return this.jobSeekerService.add(jobSeeker,passwordAgain);
 	}
 	
-	@GetMapping("/getAllEducationInformation")
-	public DataResult<List<EducationInformation>> getAllEducationInformation(){
-		return this.educationInformationService.getAll();
-	}
-	@PostMapping("/addEducationInformation")
-	public Result addEducationInformation(@RequestBody EducationInformation educationInformation) {
-		return this.educationInformationService.add(educationInformation);
-	}
-	@GetMapping("/getAllWorkExperience")
-	public DataResult<List<WorkExperience>> getAllWorkExperience(){
-		return this.experienceService.getAll();
-	}
-	@PostMapping("/addWorkExperience")
-	public Result addWorkExperience(@RequestBody WorkExperience workExperience) {
-		return this.experienceService.add(workExperience);
-	}
-
-	@GetMapping("/getAllForeignLanguageInformation")
-	public DataResult<List<ForeignLanguageInformation>> getAllForeignLanguageInformation() {
-		return this.languageInformationService.getAll();
-	}
-	
-	@PostMapping("/addForeignLanguageInformation")
-	public Result addForeignLanguageInformation(@RequestBody ForeignLanguageInformation languageInformation) {
-		return this.languageInformationService.add(languageInformation);
-	}
-	@GetMapping("/getAllSocialAccount")
-	public DataResult<List<SocialAccount>> getAllSocialAccount() {
-		return this.accountService.getAll();
-	}
-	@PostMapping("/addSocialAccount")
-	public Result addSocialAccount(@RequestBody SocialAccount account) {
-		return this.accountService.add(account);
-	}
-	
-	@GetMapping("/getAllCoverLetter")
-	public DataResult<List<CoverLetter>> getALLCoverLetter() {
-		return this.coverLetterService.getALL();
-	}
-	@PostMapping("/addCoverLetter")
-	public Result addCoverLetter(@RequestBody CoverLetter coverLetter) {
-		return this.coverLetterService.add(coverLetter);
-	}
-	@GetMapping("/getAllComputerSkill")
-	public DataResult<List<ComputerSkill>> getAllComputerSkill() {
-		return this.computerSkillService.getAll();
-	}
-	@PostMapping("/addComputerSkill")
-	public Result addComputerSkill(@RequestBody ComputerSkill computerSkill) {
-		return this.computerSkillService.add(computerSkill);
-	}
-	@PostMapping("/addCv")
-	public Result addCv(@RequestBody Cv cv) {
-		return this.cvService.add(cv);
-	}
-	@GetMapping("/getAllCv")
-	public DataResult<List<Cv>> getAllCv(){
-		return this.cvService.getAll();
-	}
-	@GetMapping("/findByFirstname")
-	public DataResult<List<Cv>> findByFirstname(String identification_number) {
-		return this.cvService.findByJobSeeker(identification_number);
-	}
 }

@@ -13,4 +13,6 @@ public interface CvDao extends JpaRepository<Cv, Integer> {
 	
 	@Query("From Cv c Inner join c.jobSeeker j  where j.identification_number=:identification_number  ")
      List<Cv> findByJobSeeker(String identification_number);
+	
+	
 }

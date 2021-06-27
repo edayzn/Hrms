@@ -34,4 +34,10 @@ public class ComputerSkillManager implements ComputerSkillService {
 		return new SuccessResuslt("Bilgisayar yetenekleri eklendi");
 	}
 
+	@Override
+	public Result update(int id, int userId, String computerSkills) {
+		this.computerSkillDao.update(id, userId, computerSkills);
+		return new SuccessResuslt("Bilgisayar yetenekleri güncellendi") ;
+	}
+
 }

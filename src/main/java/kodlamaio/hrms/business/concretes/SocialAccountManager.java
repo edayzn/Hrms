@@ -34,4 +34,10 @@ public class SocialAccountManager implements SocialAccountService {
 		return new SuccessResuslt("Sosyal hesap bilgileri eklendi.");
 	}
 
+	@Override
+	public Result update(int id, int userId, String socialAccount) {
+		this.accountDao.update(id, userId, socialAccount);
+		return new SuccessResuslt("Sosyal hesap bilgileri güncellendi");
+	}
+
 }
