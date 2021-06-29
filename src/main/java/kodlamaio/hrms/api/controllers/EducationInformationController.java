@@ -27,11 +27,11 @@ public class EducationInformationController {
 		this.educationInformationService = educationInformationService;
 	}
 	
-	@GetMapping("/getAllEducationInformation")
+	@GetMapping("/getAll")
 	public DataResult<List<EducationInformation>> getAllEducationInformation(){
 		return this.educationInformationService.getAll();
 	}
-	@PostMapping("/addEducationInformation")
+	@PostMapping("/add")
 	public Result addEducationInformation(@RequestBody EducationInformation educationInformation) {
 		return this.educationInformationService.add(educationInformation);
 	}

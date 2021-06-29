@@ -2,7 +2,6 @@ package kodlamaio.hrms.api.controllers;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,36 +10,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kodlamaio.hrms.business.abstracts.CvService;
+import kodlamaio.hrms.business.abstracts.SystemPersonelService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.Cv;
+import kodlamaio.hrms.entities.concretes.SystemPersonel;
+@RequestMapping("/api/systemPersonel")
 @RestController
 @CrossOrigin
-@RequestMapping("/api/cv")
-public class CvController {
-
-	private CvService cvService;
-
+public class SystemPersonelController {
+	private SystemPersonelService personelService;
 	@Autowired
-	public CvController(CvService cvService) {
+	public SystemPersonelController(SystemPersonelService personelService) {
 		super();
-		this.cvService = cvService;
+		this.personelService = personelService;
 	}
-
-	@PostMapping("/add")
-	public Result addCv(@RequestBody Cv cv) {
-		return this.cvService.add(cv);
-	}
-
 	@GetMapping("/getAll")
-	public DataResult<List<Cv>> getAllCv() {
-		return this.cvService.getAll();
+	public DataResult<List<SystemPersonel>> getAll() {
+		return this.personelService.getAll();
 	}
-
-	@GetMapping("/findByFirstname")
-	public DataResult<List<Cv>> findByFirstname(String identification_number) {
-		return this.cvService.findByJobSeeker(identification_number);
+	@PostMapping("/add")
+	public Result add(@RequestBody SystemPersonel personel) {
+		return this.personelService.add(personel);
 	}
-
 }

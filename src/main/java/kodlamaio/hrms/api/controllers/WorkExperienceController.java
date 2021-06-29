@@ -26,14 +26,15 @@ public class WorkExperienceController {
 		super();
 		this.experienceService = experienceService;
 	}
-	@GetMapping("/getAllWorkExperience")
-	public DataResult<List<WorkExperience>> getAllWorkExperience(){
+	@GetMapping("/getAll")
+	public DataResult<List<WorkExperience>> getAll(){
 		return this.experienceService.getAll();
 	}
-	@PostMapping("/addWorkExperience")
-	public Result addWorkExperience(@RequestBody WorkExperience workExperience) {
+	@PostMapping("/add")
+	public Result add(@RequestBody WorkExperience workExperience) {
 		return this.experienceService.add(workExperience);
 	}
+	@PostMapping("/update")
 	public Result update(WorkExperience workExperience) {
 		return this.experienceService.update(workExperience);
 	}

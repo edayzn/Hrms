@@ -26,13 +26,13 @@ public class ForeignLanguageInformationController {
 		this.languageInformationService = languageInformationService;
 	}
 	
-	@GetMapping("/getAllForeignLanguageInformation")
-	public DataResult<List<ForeignLanguageInformation>> getAllForeignLanguageInformation() {
+	@GetMapping("/getAll")
+	public DataResult<List<ForeignLanguageInformation>> getAll() {
 		return this.languageInformationService.getAll();
 	}
 	
-	@PostMapping("/addForeignLanguageInformation")
-	public Result addForeignLanguageInformation(@RequestBody ForeignLanguageInformation languageInformation) {
+	@PostMapping("/add")
+	public Result add(@RequestBody ForeignLanguageInformation languageInformation) {
 		return this.languageInformationService.add(languageInformation);
 	}
 	@Transactional
